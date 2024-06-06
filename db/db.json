@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id": "1", 
+      "name": "iPhone 15", 
+      "color": "red",
+      "price": "1000",
+      "image": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone13pro_09142021_big.jpg.large.jpg",
+      "description": "The iPhone 15 is the latest and greatest iPhone to date. It has a 6.7 inch display, 5G capabilities, and a 120Hz refresh rate.",
+      "brand": "Apple"    
+    },
+    {
+      "id": "2", 
+      "name": "Shoes", 
+      "color": "red",
+      "price": "2000",
+      "image": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone13pro_09142021_big.jpg.large.jpg",
+      "description": "The iPhone 15 is the latest and greatest iPhone to date. It has a 6.7 inch display, 5G capabilities, and a 120Hz refresh rate.",
+      "brand": "Apple"    
+    },
+    {
+      "id": "3", 
+      "name": "Telephone", 
+      "color": "red",
+      "price": "3000",
+      "image": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone13pro_09142021_big.jpg.large.jpg",
+      "description": "The iPhone 15 is the latest and greatest iPhone to date. It has a 6.7 inch display, 5G capabilities, and a 120Hz refresh rate.",
+      "brand": "Apple"    
+    }
+  ]
+}

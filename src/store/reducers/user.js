@@ -1,42 +1,41 @@
+import { data } from "autoprefixer";
 import {
-	FETCH_USER,
+	FETCH_USER_START,
 	FETCH_USER_FAILURE,
 	FETCH_USER_SUCCESS,
 } from "../actions/user.js";
 
 const initialState = {
-	user:[]
+	user:{
+    data:[],
+    isloading:false,
+    isError:false,
+  }
 };
 
 export const userReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case FETCH_USER:
+		case FETCH_USER_START:
 			return {
 				...state,
-				user: {
-					...state.user,
-					loading: true,
-				},
+        user:{
+          ...state.user,
+          isloading: true,
+        }
 			};
 
 		case FETCH_USER_SUCCESS:
 			return {
 				...state,
-				user: {
-					...state.user,
-					loading: false,
-					data: action.payload.user,
-				},
+        data: action.payload.data,
+        isloading: false,
 			};
 
 		case FETCH_USER_FAILURE:
 			return {
 				...state,
-				user: {
-					...state.user,
-					loading: false,
-					error: action.payload.error,
-				},
+        isError: action.payload.error,
+        isloading: false,
 			};
 
 		default:
