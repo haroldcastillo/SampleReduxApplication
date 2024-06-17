@@ -27,5 +27,77 @@
       "description": "The iPhone 15 is the latest and greatest iPhone to date. It has a 6.7 inch display, 5G capabilities, and a 120Hz refresh rate.",
       "brand": "Apple"    
     }
+  ],
+  "user": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "johndoe@gmai.com",
+      "password": "password",
+      "cart": [
+        {
+          "id": "1",
+          "quantity": "2"
+        },
+        {
+          "id": "2",
+          "quantity": "1"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "janesmith@gmail.com",
+      "password": "password123",
+      "cart": [
+      {
+        "id": "3",
+        "quantity": "3"
+      },
+      {
+        "id": "1",
+        "quantity": "1"
+      }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Mike Johnson",
+      "email": "mikejohnson@gmail.com",
+      "password": "password456",
+      "cart": [
+      {
+        "id": "2",
+        "quantity": "2"
+      },
+      {
+        "id": "3",
+        "quantity": "1"
+      }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Emily Davis",
+      "email": "emilydavis@gmail.com",
+      "password": "password789",
+      "cart": [
+      {
+        "id": "1",
+        "quantity": "1"
+      },
+      {
+        "id": "2",
+        "quantity": "2"
+      },
+      {
+        "id": "3",
+        "quantity": "3"
+      }
+      ]
+    }
   ]
+
+
 }
