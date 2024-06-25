@@ -1,6 +1,13 @@
-export const FETCH_USER_START = "FETCH_USER_START";
-export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
-export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE";
+export const LOGIN_USER_START = "LOGIN_USER_START";
+export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
+export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
+
+
+
+export const FETCH_USERS_LIST_START = "FETCH_USERS_LIST_START";
+export const FETCH_USERS_LIST_SUCCESS = "FETCH_USERS_LIST_SUCCESS";
+export const FETCH_USERS_LIST_FAILURE = "FETCH_USERS_LIST_FAILURE";
+
 export const CREATE_USER = "CREATE_USER";
 export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
 export const DELETE_USER = "DELETE_USER";
@@ -8,21 +15,47 @@ export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
 export const UPDATE_USER = "UPDATE_USER"
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS"
 
-export const fetchUser = () => {
+export const loginUser = ({ email, password }) => {
   return {
-    type: FETCH_USER_START,
+    type: LOGIN_USER_START,
+    payload: {
+      email,
+      password,
+    },
+  }
+};
+
+export const loginUserSuccess = (payload) => {
+  return {
+    type: LOGIN_USER_SUCCESS,
+    payload
   };
 };
 
-export const fetchUserSuccess = ({ user }) => ({
-	type: FETCH_USER_SUCCESS,
-	payload: {
-		user,
-	},
+export const loginUserFailure = ({ error }) => {
+  return {
+    type: LOGIN_USER_FAILURE,
+    payload: {
+      error,
+    },
+  };
+}
+
+
+
+export const fetchUsersList = () => {
+  return {
+    type: FETCH_USERS_LIST_START,
+  };
+};
+
+export const fetchUsersListSuccess = (payload) => ({
+	type: FETCH_USERS_LIST_SUCCESS,
+	payload
 });
 
-export const fetchUserFailure = ({ error }) => ({
-	type: FETCH_USER_FAILURE,
+export const fetchUsersListFailure = ({ error }) => ({
+	type: FETCH_USERS_LIST_FAILURE,
 	payload: {
 		error,
 	},

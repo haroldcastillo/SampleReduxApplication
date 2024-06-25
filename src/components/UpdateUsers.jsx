@@ -1,16 +1,16 @@
 import React from 'react'
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { updateUser } from '../store/actions/user';
+// import { useDispatch } from 'react-redux';
+// import { updateUser } from '../store/actions/user';
 export default function UpdateUsers({data}) {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const formik = useFormik({
     initialValues:{
       id : data._id,
       name: data.name,
       email: data.email
     },onSubmit:async (values)=>{
-      dispatch(updateUser(values))
+      // dispatch(updateUser(values))
     }
   })
   return (

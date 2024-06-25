@@ -1,41 +1,53 @@
 import { takeLatest, put, call, all, fork } from "redux-saga/effects";
 import {
-  FETCH_USER_START,
-	fetchUserFailure,
-	fetchUserSuccess,
+  LOGIN_USER_START,
+  loginUserSuccess,
+  loginUserFailure,
+  FETCH_USERS_LIST_START,
+  fetchUsersListSuccess,
+  fetchUsersListFailure,
   CREATE_USER,
   createUserSuccess,
   DELETE_USER,
   deleteUserSuccess,
   UPDATE_USER,
-  updateUserSuccess
+  updateUserSuccess,
 } from "../actions/user";
 
-import { 
+import {
   getUserList,
   createUser,
   updateUser,
   deleteUser 
 } from "../apis/user";
+import {
+  login
+} from "../apis/auth";
 
 {/* ====== Async Function SAGA ====== */ }
-function* fetchUserSaga() {
+function* loginUserSaga(props) {
   try {
-    const response = yield call(getUserList);
-    yield put(fetchUserSuccess({ user: response })); 
+    const response = yield login(props.payload);
+    yield put(loginUserSuccess({
+      ...response.user,
+      token: response.accessToken
+    })); 
   } catch (error) {
-    yield put(fetchUserFailure({ error: error.toString() }));
+    yield put(loginUserFailure({ error: error.toString() }));
   }
 }
 
-function* createUserSaga(props) {
+
+function* fetchUsersListSaga() {
   try {
-    const response = yield createUser(props.payload);
-    yield put(createUserSuccess(response));
+    const response = yield call(getUserList);
+    yield put(fetchUsersListSuccess(response )); 
   } catch (error) {
-    console.log(error);
+    yield put(fetchUsersListFailure({ error: error.toString() }));
   }
 }
+
+
 function* updateUserSaga(props) {
   try{
     const response = yield updateUser(props.payload);
@@ -48,7 +60,6 @@ function* updateUserSaga(props) {
 function* deleteUserSaga(props) {
   try{
     const response = yield deleteUser(props.payload)
-    console.log(response)
     yield put(deleteUserSuccess({_id:props.payload.id}))
   }catch(error){
     console.log(error)
@@ -57,12 +68,15 @@ function* deleteUserSaga(props) {
 
 
 {/* ====== WATCHER SAGA ====== */ }
-function* watchFetchUserSaga() {
-	yield takeLatest(FETCH_USER_START, fetchUserSaga);
+function* watchLoginUserSaga() {
+  yield takeLatest(LOGIN_USER_START, loginUserSaga);
 }
-function* watchCreateUserSaga() {
-	yield takeLatest(CREATE_USER, createUserSaga);
+
+
+function* watchFetchUsersSaga() {
+	yield takeLatest(FETCH_USERS_LIST_START, fetchUsersListSaga);
 }
+
 function* watchDeleteUserSaga() {
 	yield takeLatest(DELETE_USER, deleteUserSaga);
 }
@@ -72,8 +86,8 @@ function* watchUpdateUserSaga() {
 
 export default function* userSaga() {
 	yield all([
-		fork(watchFetchUserSaga),
-    fork(watchCreateUserSaga),
+    fork(watchLoginUserSaga),
+		fork(watchFetchUsersSaga),
     fork(watchDeleteUserSaga),
     fork(watchUpdateUserSaga),
 	]);
